@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Academy - Learn, Grow, Succeed</title>
+    
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        /* ===== HEADER SECTION ===== */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .school-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .school-name:hover {
+            transform: scale(1.05);
+        }
+
+        /* Logo animation */
+        .school-name span {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* ===== NAVIGATION MENU ===== */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 0.25rem;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile hamburger menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: rotate(90deg);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            margin: 3rem 0;
+            scroll-margin-top: 80px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section:nth-of-type(1) { animation-delay: 0.1s; }
+        section:nth-of-type(2) { animation-delay: 0.2s; }
+        section:nth-of-type(3) { animation-delay: 0.3s; }
+        section:nth-of-type(4) { animation-delay: 0.4s; }
+
+        /* ===== HOME SECTION ===== */
+        .home {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .home:hover {
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .banner-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 2rem auto;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.5s ease;
+        }
+
+        .banner-image:hover::before {
+            left: 100%;
+        }
+
+        .banner-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .home h1 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .home h1:hover {
+            color: #764ba2;
+            text-shadow: 2px 2px 4px rgba(102, 126, 234, 0.2);
+        }
+
+        .home p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .about:hover {
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .about h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .about h2:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+            padding-left: 10px;
+        }
+
+        .about p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            transition: all 0.3s ease;
+            cursor: default;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .about p:hover {
+            background-color: #f9f9ff;
+            padding-left: 1rem;
+            color: #444;
+        }
+
+        /* ===== COURSES SECTION ===== */
+        .courses {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .courses:hover {
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .courses h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .courses h2:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+            padding-left: 10px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .course-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            opacity: 0;
+            border-radius: 10px;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .course-card:hover::after {
+            opacity: 1;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.3);
+            border-left-width: 8px;
+        }
+
+        .course-card h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-card:hover h3 {
+            color: #764ba2;
+            transform: translateX(5px);
+        }
+
+        .course-card p {
+            color: #555;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-card:hover p {
+            color: #333;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact:hover {
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact h2:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+            padding-left: 10px;
+        }
+
+        .contact p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* ===== FORM STYLING ===== */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .form-group:hover {
+            transform: translateX(5px);
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group:hover label {
+            color: #667eea;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background-color: #f9f9ff;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.2);
+            transform: scale(1.02);
+        }
+
+        .form-group input:hover,
+        .form-group textarea:hover {
+            border-color: #667eea;
+            background-color: #ffffff;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .error {
+            color: #d32f2f;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            animation: shake 0.3s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ===== CONFETTI ANIMATION ===== */
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* ===== PARTY POPPER ANIMATION ===== */
+        .party-popper {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 1000;
+            animation: pop 2s ease-out forwards;
+        }
+
+        @keyframes pop {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        footer:hover {
+            background: #222;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        footer p:hover {
+            text-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+        }
+
+        /* ===== SUCCESS MESSAGE ===== */
+        .success-message {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+            animation: slideIn 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: shimmer 0.6s ease;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* ===== TOOLTIP ===== */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            background-color: #667eea;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -50px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* ===== RESPONSIVE DESIGN (Mobile) ===== */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .school-name {
+                font-size: 1.3rem;
+            }
+
+            /* Show hamburger menu on mobile */
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Hide nav menu by default on mobile */
+            nav {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 1rem;
+                z-index: 99;
+                animation: slideDown 0.3s ease;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Show nav menu when active */
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            main {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .home h1 {
+                font-size: 1.8rem;
+            }
+
+            .home p {
+                font-size: 1rem;
+            }
+
+            .banner-image {
+                height: 200px;
+                font-size: 1.5rem;
+            }
+
+            .about h2,
+            .courses h2,
+            .contact h2 {
+                font-size: 1.5rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .contact-form {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .school-name {
+                font-size: 1rem;
+            }
+
+            .home h1 {
+                font-size: 1.5rem;
+            }
+
+            .about h2,
+            .courses h2,
+            .contact h2 {
+                font-size: 1.3rem;
+            }
+
+            .banner-image {
+                height: 150px;
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER WITH NAVIGATION ===== -->
+    <header id="header">
+        <div class="header-container">
+            <!-- School Name with floating animation -->
+            <div class="school-name" id="schoolLogo">
+                <span>🎓</span>
+                <span>Tech Academy</span>
+            </div>
+            
+            <!-- Hamburger Menu Button (Mobile) -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">☰</button>
+            
+            <!-- Navigation Menu -->
+            <nav id="navMenu">
+                <ul>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#courses" class="nav-link">Courses</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <!-- HOME SECTION -->
+        <section id="home" class="home">
+            <h1>Welcome to Tech Academy</h1>
+            <p>Where Learning Meets Innovation</p>
+            
+            <!-- Banner Image (Gradient placeholder) -->
+            <div class="banner-image">🚀 Learn Technology Skills</div>
+            
+            <!-- Welcome Button with tooltip -->
+            <button class="btn tooltip" id="welcomeBtn">
+                Get Started
+                <span class="tooltiptext">Click to learn more about our programs</span>
+            </button>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about">
+            <h2>About Our School</h2>
+            <p>
+                Tech Academy is dedicated to providing quality education in science and technology. 
+                Our mission is to empower students with practical skills and theoretical knowledge 
+                to excel in the digital world.
+            </p>
+            <p>
+                With experienced instructors and state-of-the-art facilities, we prepare our 
+                students for careers in technology, engineering, and innovation. We believe in 
+                learning by doing, and our hands-on approach ensures that every student gains 
+                real-world experience.
+            </p>
+            <p>
+                Join thousands of successful graduates who have built amazing careers after 
+                completing their studies at Tech Academy!
+            </p>
+        </section>
+
+        <!-- COURSES SECTION -->
+        <section id="courses" class="courses">
+            <h2>Our Courses</h2>
+            
+            <div class="courses-grid">
+                <!-- Course Card 1 -->
+                <div class="course-card" data-course="Web Development">
+                    <h3>💻 Web Development</h3>
+                    <p>
+                        Learn HTML, CSS, JavaScript, and modern frameworks. Build responsive 
+                        websites and web applications from scratch.
+                    </p>
+                </div>
+
+                <!-- Course Card 2 -->
+                <div class="course-card" data-course="Mobile App Development">
+                    <h3>📱 Mobile App Development</h3>
+                    <p>
+                        Master Android and iOS app development. Create native applications 
+                        that millions of users can download and use.
+                    </p>
+                </div>
+
+                <!-- Course Card 3 -->
+                <div class="course-card" data-course="Artificial Intelligence">
+                    <h3>🤖 Artificial Intelligence</h3>
+                    <p>
+                        Explore machine learning, deep learning, and AI algorithms. Build 
+                        intelligent systems that solve real-world problems.
+                    </p>
+                </div>
+
+                <!-- Course Card 4 -->
+                <div class="course-card" data-course="Cloud Computing">
+                    <h3>☁️ Cloud Computing</h3>
+                    <p>
+                        Learn AWS, Azure, and Google Cloud. Deploy scalable applications 
+                        and manage cloud infrastructure effectively.
+                    </p>
+                </div>
+
+                <!-- Course Card 5 -->
+                <div class="course-card" data-course="Cybersecurity">
+                    <h3>🔐 Cybersecurity</h3>
+                    <p>
+                        Master network security, ethical hacking, and data protection. 
+                        Become a certified security professional.
+                    </p>
+                </div>
+
+                <!-- Course Card 6 -->
+                <div class="course-card" data-course="Database Management">
+                    <h3>🗄️ Database Management</h3>
+                    <p>
+                        Learn SQL, NoSQL, and database design. Manage large-scale data 
+                        and optimize database performance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="contact">
+            <h2>Get In Touch</h2>
+            <p>Have questions? We'd love to hear from you. Fill out the form below and we'll get back to you soon!</p>
+            
+            <!-- Success Message (Hidden by default) -->
+            <div class="success-message" id="successMessage">
+                ✓ Thank you! Your message has been sent successfully. We'll contact you soon!
+            </div>
+
+            <!-- Contact Form -->
+            <form class="contact-form" id="contactForm" novalidate>
+                <!-- Name Input -->
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Enter your full name"
+                        aria-label="Full Name"
+                        autocomplete="name"
+                    >
+                    <span class="error" id="nameError" role="alert"></span>
+                </div>
+
+                <!-- Email Input -->
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Enter your email address"
+                        aria-label="Email Address"
+                        autocomplete="email"
+                    >
+                    <span class="error" id="emailError" role="alert"></span>
+                </div>
+
+                <!-- Message Textarea -->
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        placeholder="Enter your message here..."
+                        aria-label="Message"
+                    ></textarea>
+                    <span class="error" id="messageError" role="alert"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn submit-btn" id="submitBtn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="footer">
+        <p>&copy; 2026 Tech Academy. All rights reserved.</p>
+        <p>Contact us: info@techacademy.com | Phone: +1-800-TECH-101</p>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== MOBILE MENU TOGGLE =====
+        // Get references to the hamburger menu button and navigation menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const header = document.getElementById('header');
+
+        // Toggle menu visibility when hamburger button is clicked
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', navMenu.classList.contains('active'));
+        });
+
+        // Close menu when a navigation link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // ===== HEADER SCROLL EFFECT =====
+        // Add subtle animation when scrolling
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ===== COURSE CARDS INTERACTION =====
+        // Add click feedback to course cards
+        const courseCards = document.querySelectorAll('.course-card');
+        courseCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const courseName = this.getAttribute('data-course');
+                console.log('User interested in: ' + courseName);
+            });
+
+            // Add keyboard support for course cards
+            card.setAttribute('tabindex', '0');
+            card.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    this.click();
+                }
+            });
+        });
+
+        // ===== WELCOME BUTTON =====
+        // Get the welcome button
+        const welcomeBtn = document.getElementById('welcomeBtn');
+
+        // Show an alert when the welcome button is clicked
+        welcomeBtn.addEventListener('click', function() {
+            alert('🎓 Welcome to Tech Academy!\n\nWe\'re excited to help you learn cutting-edge technology skills. Start your journey today!');
+        });
+
+        // ===== CONTACT FORM VALIDATION =====
+        // Get the form element
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Add real-time validation on input blur
+        document.getElementById('name').addEventListener('blur', function() {
+            validateField(this.id);
+        });
+
+        document.getElementById('email').addEventListener('blur', function() {
+            validateField(this.id);
+        });
+
+        document.getElementById('message').addEventListener('blur', function() {
+            validateField(this.id);
+        });
+
+        // Add event listener for form submission
+        contactForm.addEventListener('submit', function(e) {
+            // Prevent the default form submission behavior
+            e.preventDefault();
+
+            // Clear all error messages first
+            clearErrors();
+
+            // Get form input values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Flag to track if form is valid
+            let isValid = true;
+
+            // ===== VALIDATION CHECKS =====
+
+            // Check if name is empty
+            if (name === '') {
+                showError('nameError', 'Please enter your full name');
+                isValid = false;
+            } else if (name.length < 3) {
+                showError('nameError', 'Name must be at least 3 characters long');
+                isValid = false;
+            }
+
+            // Check if email is empty
+            if (email === '') {
+                showError('emailError', 'Please enter your email address');
+                isValid = false;
+            } 
+            // Check if email format is valid using regex pattern
+            else if (!isValidEmail(email)) {
+                showError('emailError', 'Please enter a valid email address');
+                isValid = false;
+            }
+
+            // Check if message is empty
+            if (message === '') {
+                showError('messageError', 'Please enter your message');
+                isValid = false;
+            } else if (message.length < 10) {
+                showError('messageError', 'Message must be at least 10 characters long');
+                isValid = false;
+            }
+
+            // ===== FORM SUBMISSION =====
+            // If all validations pass, show success message and trigger celebrations
+            if (isValid) {
+                // Disable submit button temporarily
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                // Simulate form submission delay
+                setTimeout(function() {
+                    // Show success message
+                    showSuccessMessage();
+
+                    // Trigger celebration effects
+                    createPartyPoppers();
+                    createConfetti();
+
+                    // Reset form fields
+                    contactForm.reset();
+
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+
+                    // Scroll to success message
+                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+
+                    // Hide success message after 5 seconds
+                    setTimeout(function() {
+                        hideSuccessMessage();
+                    }, 5000);
+                }, 800);
+            }
+        });
+
+        // ===== HELPER FUNCTIONS =====
+
+        /**
+         * Validate email format using regular expression
+         * @param {string} email - The email address to validate
+         * @returns {boolean} - True if email is valid, false otherwise
+         */
+        function isValidEmail(email) {
+            // Regular expression pattern for email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+
+        /**
+         * Validate individual form field
+         * @param {string} fieldId - The ID of the field to validate
+         */
+        function validateField(fieldId) {
+            const field = document.getElementById(fieldId);
+            const value = field.value.trim();
+            const errorId = fieldId + 'Error';
+
+            if (fieldId === 'name') {
+                if (value === '') {
+                    showError(errorId, 'Please enter your full name');
+                } else if (value.length < 3) {
+                    showError(errorId, 'Name must be at least 3 characters long');
+                } else {
+                    clearFieldError(errorId);
+                }
+            } else if (fieldId === 'email') {
+                if (value === '') {
+                    showError(errorId, 'Please enter your email address');
+                } else if (!isValidEmail(value)) {
+                    showError(errorId, 'Please enter a valid email address');
+                } else {
+                    clearFieldError(errorId);
+                }
+            } else if (fieldId === 'message') {
+                if (value === '') {
+                    showError(errorId, 'Please enter your message');
+                } else if (value.length < 10) {
+                    showError(errorId, 'Message must be at least 10 characters long');
+                } else {
+                    clearFieldError(errorId);
+                }
+            }
+        }
+
+        /**
+         * Display an error message below a form field
+         * @param {string} errorId - The ID of the error message element
+         * @param {string} message - The error message to display
+         */
+        function showError(errorId, message) {
+            const errorElement = document.getElementById(errorId);
+            errorElement.textContent = message;
+        }
+
+        /**
+         * Clear error message for a specific field
+         * @param {string} errorId - The ID of the error message element
+         */
+        function clearFieldError(errorId) {
+            const errorElement = document.getElementById(errorId);
+            errorElement.textContent = '';
+        }
+
+        /**
+         * Clear all error messages from the form
+         */
+        function clearErrors() {
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('messageError').textContent = '';
+        }
+
+        /**
+         * Show the success message
+         */
+        function showSuccessMessage() {
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+        }
+
+        /**
+         * Hide the success message
+         */
+        function hideSuccessMessage() {
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.remove('show');
+        }
+
+        /**
+         * Create party popper animations when form is submitted successfully
+         * This creates animated emojis that fly across the screen
+         */
+        function createPartyPoppers() {
+            const popperEmojis = ['🎉', '🎊', '✨', '🌟', '🎈'];
+            const numberOfPoppers = 15;
+
+            for (let i = 0; i < numberOfPoppers; i++) {
+                setTimeout(function() {
+                    const popper = document.createElement('div');
+                    popper.className = 'party-popper';
+                    popper.textContent = popperEmojis[Math.floor(Math.random() * popperEmojis.length)];
+
+                    // Random starting position
+                    const startX = Math.random() * window.innerWidth;
+                    const startY = Math.random() * window.innerHeight;
+
+                    popper.style.left = startX + 'px';
+                    popper.style.top = startY + 'px';
+
+                    // Random trajectory
+                    const tx = (Math.random() - 0.5) * 500;
+                    const ty = (Math.random() - 0.5) * 500;
+
+                    popper.style.setProperty('--tx', tx + 'px');
+                    popper.style.setProperty('--ty', ty + 'px');
+
+                    document.body.appendChild(popper);
+
+                    // Remove the element after animation completes
+                    setTimeout(function() {
+                        popper.remove();
+                    }, 2000);
+                }, i * 50);
+            }
+        }
+
+        /**
+         * Create confetti animation when form is submitted successfully
+         * This creates colorful falling particles
+         */
+        function createConfetti() {
+            const confettiColors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#00f2fe'];
+            const numberOfConfetti = 30;
+
+            for (let i = 0; i < numberOfConfetti; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-10px';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                confetti.style.borderRadius = '50%';
+
+                document.body.appendChild(confetti);
+
+                // Animate confetti falling
+                const duration = 2 + Math.random() * 1;
+                const xMovement = (Math.random() - 0.5) * 200;
+
+                confetti.animate([
+                    { 
+                        transform: `translate(0, 0) rotate(0deg)`,
+                        opacity: 1
+                    },
+                    { 
+                        transform: `translate(${xMovement}px, ${window.innerHeight + 20}px) rotate(360deg)`,
+                        opacity: 0
+                    }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+
+                // Remove the element after animation completes
+                setTimeout(function() {
+                    confetti.remove();
+                }, duration * 1000);
+            }
+        }
+
+        // ===== SMOOTH SCROLL BEHAVIOR =====
+        // Add smooth scrolling to all navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ===== INITIALIZE PAGE =====
+        // Log when page is fully loaded
+        window.addEventListener('load', function() {
+            console.log('Tech Academy website loaded successfully!');
+        });
+    </script>
+</body>
+</html>
